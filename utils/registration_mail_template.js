@@ -92,14 +92,14 @@ const registration_mail = (eventdetails) => {
                 <div class="card-mid">
                     <div class="card-mid-top">
                         <div class="habba">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/habba-23.appspot.com/o/APL-logo.png?alt=media&token=ca1d5e38-c7a7-4fd4-abf9-1b271b11d3f8" alt="">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/acharyahabba-21057.firebasestorage.app/o/acharya%20logo.png?alt=media&token=22a8ae58-7781-4f63-a118-1bea53c41454" alt="">
                         </div>
-                        <div class="card-heading"><span class="user-name-wrapper">Hey <span
-                                    class="user-name">${eventdetails.eventName}</span>,</span> registration complete.</div>
+                        <div class="card-heading"><span class="user-name-wrapper">Hello, <span
+                                    class="user-name">${eventdetails.eventcordinator}</span>,</span> registration complete for the event <b>${eventdetails.eventName}</b>.</div>
                         <h3>Finally!</h3>
                         <div class="card-text-wrapper">
-                            <p>You have successfully registered for <strong>APL Season 10</strong>.</p>
-                            <p>Please find the attached registration form with this email and follow the instructions as specified.</p>
+                            <p>You will receive a mail with event circular once the event is approved. </p>
+                            <p>Please find the <b>Event Form</b> attached with this email .</p>
                         </div>
                     </div>
                 </div>
