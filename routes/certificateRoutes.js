@@ -6,7 +6,7 @@ router.get( '/get/:_id', async ( req, res ) => {
   try {
     res.status( 200 ).json( `Root API called...   ID =>  ${ req.params._id }` );
   } catch ( error ) {
-    res.status( 500 ).json( { error: `Root API error !!!` } );
+    res.status( 500 ).json( { error: `Root API error !!!` } ); getAlladminRequests
   }
 } );
 
@@ -15,6 +15,12 @@ router.post( '/request', certificateControllers.createCertificateRequest );
 
 // Route for retrieving all certificate requests
 router.get( '/requests', certificateControllers.getAllRequests );
+
+// Route for retrieving all certificate requests
+router.get( '/adminrequests', certificateControllers.getAlladminRequests );
+
+// Route for retrieving all approved requests
+router.get( '/approved', certificateControllers.approvedevents );
 
 // Route for generating a new certificate(updating the pending Certificate Request)
 router.put( '/create/:_id', certificateControllers.generateCertificate );

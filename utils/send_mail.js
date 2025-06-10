@@ -15,7 +15,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-const send_mail = async (user, data, template, attachment) => {
+const send_mail = async (eventdetails, data, template, attachment) => {
   try {
     // Get the access token
     const accessToken = await oAuth2Client.getAccessToken();
@@ -35,14 +35,14 @@ const send_mail = async (user, data, template, attachment) => {
 
     // Prepare the email options
     const mailOptions = {
-      from: "🐯 HABBA 2025<acharyahabba@acharya.ac.in>",
-      to: user.email,
+      from: "Event Confirmation<acharyahabba@acharya.ac.in>",
+      to: eventdetails.email,
       subject: data.subject,
       text: data.text,
       html: template,
       attachments: attachment && [
         {
-          filename: `${user.verID.toString().padStart(4, "0")}-${user.eventName}.pdf`,
+          filename: `${eventdetails.verID.toString().padStart(4, "0")}-Event Form.pdf`,
           content: attachment,
           contentType: "application/pdf",
         },

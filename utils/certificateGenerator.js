@@ -49,7 +49,8 @@ const auth = new google.auth.GoogleAuth( {
 } );
 
 // Function to generate the certificate PDF
-exports.generateCertificate = async ( name, eventType, eventName, college, verID, email ) => {
+exports.generateCertificate = async ( email, eventType, eventName, department,
+    rpname, verID ) => {
   // temp file created in root directory for writing
   const tempFilePath = 'Certificate.pdf';
 
@@ -72,8 +73,8 @@ exports.generateCertificate = async ( name, eventType, eventName, college, verID
     const { font1, font2 } = await fetchAndEmbedFonts( pdfDoc );
 
     // texts to be inserted in PDF
-    const text1 = name;
-    const text2 = college;
+    const text1 = rpname;
+    const text2 = department;
     const text3 = eventName;
     const text4 = 'HABBA25 - ' + Number(verID);
     // Width of Text contents to be inserted, req. for calculating coordinates
@@ -99,7 +100,7 @@ exports.generateCertificate = async ( name, eventType, eventName, college, verID
     const drive = google.drive( { version: 'v3', auth } );
 
     const fileMetadata = {
-      name: `${ name }_${ eventType }_${ tempFilePath }`,
+      name: `${ rpname }_${ eventType }_${ tempFilePath }`,
       parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
     };
     const media = {
@@ -122,7 +123,7 @@ exports.generateCertificate = async ( name, eventType, eventName, college, verID
 
     await send_mail(
       {
-        name: name,
+        name: rpname,
         email: email, 
         verID: verID,
         eventName: eventName,
@@ -132,7 +133,7 @@ exports.generateCertificate = async ( name, eventType, eventName, college, verID
         text: "Horray! You have successfully completed the event and earned a certificate. Click the link below to download your certificate.",
       },
       mail_template({
-        name: name,
+        name: rpname,
         email: email, 
         verID: verID,
         eventName: eventName,

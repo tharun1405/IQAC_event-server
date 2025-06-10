@@ -1,8 +1,13 @@
-const mongoose = require( 'mongoose' );
+const mongoose = require('mongoose');
 
 // Define the schema for the certificate request data
-const certificateSchema = new mongoose.Schema( {
-  name: {
+const certificateSchema = new mongoose.Schema({
+  verID: {
+    type: Number,
+    required: () => this.status === 'approved',
+    unique: true
+  },
+  eventName: {
     type: String,
     required: () => this.status === 'pending',
   },
@@ -15,6 +20,10 @@ const certificateSchema = new mongoose.Schema( {
     required: () => this.status === 'pending',
   },
   eventVenue: {
+    type: String,
+    required: () => this.status === 'pending',
+  },
+  otherVenue: {
     type: String,
     required: () => this.status === 'pending',
   },
@@ -38,19 +47,34 @@ const certificateSchema = new mongoose.Schema( {
     type: String,
     required: () => this.status === 'pending',
   },
-  verID: {
-    type: Number,
-    required: () => this.status === 'approved',
-    unique: true
+  rpname: {
+    type: String,
+    required: () => this.status === 'pending',
+  },  
+  rpqualification: {
+    type: String,
+    required: () => this.status === 'pending',
+  },
+  rpoccupation: {
+    type: String,
+    required: () => this.status === 'pending',
+  },
+  rpexpertise: {
+    type: String,
+    required: () => this.status === 'pending',
+  },
+  rpexperience: {
+    type: String,
+    required: () => this.status === 'pending',
   },
   certificateLink: {
     type: String,
     required: () => this.status === 'approved'
   },
   status: { type: String, enum: ['pending', 'approved'], default: 'pending' }
-} );
+});
 
 // Create the CertificateRequest model
-const Certificate = mongoose.model( 'IQAC Events', certificateSchema );
+const Certificate = mongoose.model('IQAC Events', certificateSchema);
 
 module.exports = Certificate;
